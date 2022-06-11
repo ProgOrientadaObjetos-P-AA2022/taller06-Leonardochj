@@ -39,14 +39,15 @@ public class Ejecutor {
 
         CiudadHospital ubicacion = new CiudadHospital(ciudad, provincia);
 
-        System.out.println("Ingresa el numero de elemenetos para el arreglo de medicos");
+        System.out.println("Ingresa el numero de elementos para el arreglo de medicos");
         int nMedicos = entrada.nextInt();
         System.out.println("Ingresa el numero de elementos para el arreglo de enfermeros");
         int nEnfermeros = entrada.nextInt();
 
         Medico[] medicos = new Medico[nMedicos];
-        if (nMedicos < nEspecialidades) {
-            for (int j = 0; j < medicos.length; j++) {
+        Enfermero[] enfermeros = new Enfermero[nEnfermeros];
+        if ((nMedicos < nEspecialidades) && (nEnfermeros < nEspecialidades)) {
+            for (int i = 0; i < medicos.length; i++) {
                 System.out.println("Ingrese el nombre del medico");
                 entrada.nextLine();
                 String nombreMedico = entrada.nextLine();
@@ -54,12 +55,13 @@ public class Ejecutor {
                 String nombreEspecialidad = entrada.nextLine();
                 System.out.println("Ingrese el sueldo del medico");
                 double sueldo = entrada.nextDouble();
-                medicos[j] = new Medico(nombreMedico, nombreEspecialidad,
+                Medico medico = new Medico(nombreMedico, nombreEspecialidad,
                         sueldo);
+                medico.establecerNombreDoctor(nombreMedico);
+                medico.establecerEspecialidad(ciudad);
+                medico.establecerSueldoMensual(sueldo);
+                medicos[i] = medico;
             }
-        }
-        Enfermero[] enfermeros = new Enfermero[nEnfermeros];
-        if (nEnfermeros < nEspecialidades) {
             for (int k = 0; k < enfermeros.length; k++) {
                 System.out.println("Ingrese el nombre del medico");
                 entrada.nextLine();
@@ -67,18 +69,23 @@ public class Ejecutor {
                 System.out.println("Ingrese el tipo");
                 String nombreTipo = entrada.nextLine();
                 System.out.println("Ingrese el sueldo del enfermero");
-                double sueldo = entrada.nextDouble();
-                enfermeros[k] = new Enfermero(nombreEnfermero,
-                        nombreTipo, sueldo);
+                double sueldo2 = entrada.nextDouble();
+                Enfermero enfermero = new Enfermero(nombreEnfermero,
+                        nombreTipo, sueldo2);
+                enfermero.establecerNombreEnfermero(nombreEnfermero);
+                enfermero.establecerTipo(nombreTipo);
+                enfermero.establecerSueldoMensual(sueldo2);
+                enfermeros[k] = enfermero;
             }
-        }
 
-        EntidadHospitalaria hospital = new EntidadHospitalaria(nombreHospital,
-                nEspecialidades, ubicacion, direccion, medicos, enfermeros);
-        hospital.calcularSueldoTotal();
-        hospital.establecerMedicos(medicos);
-        hospital.establecerEnfermeros(enfermeros);
-        System.out.printf("%s\n", hospital);
+            EntidadHospitalaria hospital = new EntidadHospitalaria(nombreHospital,
+                    nEspecialidades, ubicacion, direccion, medicos, enfermeros);
+            hospital.establecerMedicos(medicos);
+            hospital.establecerEnfermeros(enfermeros);
+            hospital.calcularSueldoTotal();
+            System.out.printf("%s\n", hospital);
+        }
+        System.out.println("");
     }
 
 }

@@ -42,7 +42,7 @@ public class EntidadHospitalaria {
         provinciaHospital = e;
     }
 
-    public void establcerEspecialidades(int e) {
+    public void establecerEspecialidades(int e) {
         numeroEspecialidades = e;
     }
 
