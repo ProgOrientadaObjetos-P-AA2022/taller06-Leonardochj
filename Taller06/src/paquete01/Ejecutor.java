@@ -58,12 +58,12 @@ public class Ejecutor {
                 Medico medico = new Medico(nombreMedico, nombreEspecialidad,
                         sueldo);
                 medico.establecerNombreDoctor(nombreMedico);
-                medico.establecerEspecialidad(ciudad);
+                medico.establecerEspecialidad(nombreEspecialidad);
                 medico.establecerSueldoMensual(sueldo);
                 medicos[i] = medico;
             }
             for (int k = 0; k < enfermeros.length; k++) {
-                System.out.println("Ingrese el nombre del medico");
+                System.out.println("Ingrese el nombre del enfermero");
                 entrada.nextLine();
                 String nombreEnfermero = entrada.nextLine();
                 System.out.println("Ingrese el tipo");
